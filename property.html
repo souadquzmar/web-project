@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Detail — FindHouses</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/property.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-hero" id="navbar">
+    <div class="navbar-inner">
+      <a href="./index.html" class="site-brand" style="color:#fff !important">Find<span class="dot">.</span>Houses</a>
+      <div class="navbar-links"><a href="./index.html" class="nav-link">Home</a><a href="./listing.html"
+          class="nav-link active">Listing</a><a href="./about.html" class="nav-link">About</a><a href="./blog.html"
+          class="nav-link">Blog</a><a href="./contact.html" class="nav-link">Contact</a></div>
+      <div class="navbar-actions">
+        <a href="#" class="nav-link" data-modal="signin-modal">Sign In</a>
+        <div class="navbar-divider"></div>
+        <div class="nav-dropdown">
+          <div class="navbar-user">
+            <img src="./img/navbar/ts-1.jpg" class="navbar-avatar" alt="Mary" />
+            Hi, Mary
+          </div>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="./dashboard.html"><i class="fa-solid fa-gauge fa-fw"></i> Dashboard</a>
+            <a class="nav-dropdown-item" href="./user-profile.html"><i class="fa-regular fa-user fa-fw"></i> Edit
+              Profile</a>
+            <a class="nav-dropdown-item" href="./my-listings.html"><i class="fa-solid fa-house fa-fw"></i> My
+              Properties</a>
+            <a class="nav-dropdown-item" href="./payment-method.html"><i class="fa-solid fa-credit-card fa-fw"></i>
+              Payments</a>
+            <a class="nav-dropdown-item" href="./change-password.html"><i class="fa-solid fa-lock fa-fw"></i> Change
+              Password</a>
+            <a class="nav-dropdown-item" href="./index.html" style="color:var(--mainColor)"><i
+                class="fa-solid fa-right-from-bracket fa-fw"></i> Log Out</a>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-modal="add-listing-modal">
+          <i class="fa-solid fa-plus"></i> Add Listing
+        </button>
+      </div>
+      <button class="navbar-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- Sign In Modal -->
+  <div class="modal-overlay" id="signin-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">Welcome to <span>FindHouses</span></div>
+        <button class="modal-close" data-close><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-target="tab-login">Login</button>
+          <button class="modal-tab" data-target="tab-register">Register</button>
+        </div>
+        <div class="modal-pane active" id="tab-login">
+          <div class="form-group"><label class="form-label">Email or Username</label><input class="form-input"
+              type="text" placeholder="you@example.com" /></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password"
+              placeholder="••••••••" /></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:18px">Log In</button>
+        </div>
+        <div class="modal-pane" id="tab-register">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text"
+                placeholder="John" /></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text"
+                placeholder="Smith" /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email"
+              placeholder="you@example.com" /></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password"
+              placeholder="Min. 8 characters" /></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px">Create
+            Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Listing Modal -->
+  <div class="modal-overlay" id="add-listing-modal">
+    <div class="modal-box" style="max-width:900px">
+      <div class="modal-header">
+        <div class="modal-title">Add New Listing</div>
+        <button class="modal-close" data-close><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding:28px 32px">
+
+        <!-- Step indicator -->
+        <div class="form-steps" id="listingSteps">
+          <div class="form-step active">
+            <div class="form-step-num">1</div>
+            <div class="form-step-label">Info</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">2</div>
+            <div class="form-step-label">Media</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">3</div>
+            <div class="form-step-label">Location</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">4</div>
+            <div class="form-step-label">Details</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">5</div>
+            <div class="form-step-label">Features</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">6</div>
+            <div class="form-step-label">Contact</div>
+          </div>
+        </div>
+        <!-- Section 1: Description & Price -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Description &amp; Price</div>
+          <div class="form-group">
+            <label class="form-label">Property Title</label>
+            <input class="form-input" type="text" placeholder="e.g. Modern Family Villa in NYC" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Property Description</label>
+            <textarea class="form-textarea" style="min-height:110px"
+              placeholder="Describe your property in detail..."></textarea>
+          </div>
+          <div class="form-row" style="grid-template-columns:repeat(3,1fr)">
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select status</option>
+                <option>For Sale</option>
+                <option>For Rent</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Type</label>
+              <select class="form-select">
+                <option value="" disabled selected>Type</option>
+                <option>House</option>
+                <option>Commercial</option>
+                <option>Apartment</option>
+                <option>Lot</option>
+                <option>Garage</option>
+                <option>Villa</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rooms</label>
+              <select class="form-select">
+                <option value="" disabled selected>Rooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Price (USD)</label>
+              <input class="form-input" type="text" placeholder="e.g. 350,000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Area (sqft)</label>
+              <input class="form-input" type="text" placeholder="e.g. 1,200" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Media -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Media</div>
+          <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+            <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display:none" />
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Click here or drop files to upload</p>
+            <span class="upload-hint">PNG, JPG, MP4 supported</span>
+            <div class="upload-preview" id="uploadPreview"></div>
+          </div>
+        </div>
+
+        <!-- Section 3: Location -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Location</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Address</label>
+              <input class="form-input" type="text" placeholder="e.g. 95 South Park Avenue" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input class="form-input" type="text" placeholder="e.g. New York" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">State</label>
+              <input class="form-input" type="text" placeholder="e.g. NY" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Country</label>
+              <input class="form-input" type="text" placeholder="e.g. USA" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Google Maps Latitude</label>
+              <input class="form-input" type="text" placeholder="e.g. 40.7128" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Google Maps Longitude</label>
+              <input class="form-input" type="text" placeholder="e.g. -74.0060" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Extra Information -->
+        <div class="listing-section">
+          <div class="listing-section-title">Extra Information</div>
+          <div class="form-row" style="grid-template-columns:repeat(3,1fr)">
+            <div class="form-group">
+              <label class="form-label">Property Age</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select Age</option>
+                <option>0–1 years</option>
+                <option>0–5 years</option>
+                <option>0–10 years</option>
+                <option>0–15 years</option>
+                <option>0–20 years</option>
+                <option>0–50 years</option>
+                <option>50+ years</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bedrooms</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select Rooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bathrooms</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select Bathrooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Property Features -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Features</div>
+          <div class="listing-features">
+            <label class="listing-feature-check"><input type="checkbox" /><span>Air Conditioning</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Swimming Pool</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Central Heating</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Laundry Room</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Gym</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Alarm</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Window Covering</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>WiFi</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>TV Cable</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Dryer</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Microwave</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Washer</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Refrigerator</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Parking</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Balcony</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Outdoor Shower</span></label>
+          </div>
+        </div>
+
+        <!-- Section 6: Contact Information -->
+        <div class="listing-section" style="margin-bottom:0">
+          <div class="listing-section-title">Contact Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input class="form-input" type="text" placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Username</label>
+              <input class="form-input" type="text" placeholder="Your username" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input class="form-input" type="tel" placeholder="+1 234 567 890" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div
+          style="display:flex;justify-content:flex-end;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--greyMid)">
+          <button class="btn btn-outline" data-close>Cancel</button>
+          <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Listing</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <h1>Real Luxury Family Villa</h1>
+      <div class="breadcrumb-nav"><a href="./index.html">Home</a><span class="sep">›</span><a
+          href="./listing.html">Listing</a><span class="sep">›</span><span class="current">Property Detail</span></div>
+    </div>
+  </div>
+
+  <section class="section section-grey">
+    <div class="container">
+
+      <!-- ── GALLERY ──────────────────────────────────────────── -->
+      <div class="prop-gallery">
+        <div class="gallery-main">
+          <img src="./img/property-imgs/img-1.jpg" alt="Property" id="main-gallery-img" />
+        </div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb" onclick="switchThumb(this,'./img/property-imgs/img-1.jpg')"><img
+              src="./img/property-imgs/img-1.jpg" alt="" /></div>
+          <div class="gallery-thumb" onclick="switchThumb(this,'./img/property-imgs/img-2.jpg')"><img
+              src="./img/property-imgs/img-2.jpg" alt="" /></div>
+          <div class="gallery-thumb" onclick="switchThumb(this,'./img/property-imgs/img-3.jpg')"><img
+              src="./img/property-imgs/img-3.jpg" alt="" /></div>
+          <div class="gallery-thumb" onclick="switchThumb(this,'./img/property-imgs/img-4.jpg')"><img
+              src="./img/property-imgs/img-4.jpg" alt="" /></div>
+          <div class="gallery-thumb" onclick="switchThumb(this,'./img/property-imgs/img-5.jpg')"><img
+              src="./img/property-imgs/img-5.jpg" alt="" /></div>
+        </div>
+      </div>
+
+      <!-- ── MAIN GRID ─────────────────────────────────────────── -->
+      <div class="prop-detail-grid">
+        <div>
+
+          <!-- Info card -->
+          <div class="prop-detail-card">
+            <div class="d-flex align-items-start justify-content-between flex-wrap gap-3 mb-4">
+              <div>
+                <div class="prop-price" style="font-size:1.5rem">$230,000 <span>/ listing</span></div>
+                <h2 style="font-size:1.4rem;font-weight:800;color:var(--dark);margin:6px 0 4px;letter-spacing:-0.02em">
+                  Luxury Villa House</h2>
+                <div class="prop-location" style="font-size:13px"><i class="fa-solid fa-location-dot"></i> 77 — Central
+                  Park South, NYC</div>
+              </div>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="prop-badge">For Sale</span>
+                <span class="prop-badge featured-badge">Featured</span>
+              </div>
+            </div>
+            <div class="prop-features mb-4">
+              <div class="prop-feature"><i class="fa-solid fa-hashtag"></i> ID: V254680</div>
+              <div class="prop-feature"><i class="fa-solid fa-bed"></i> 7 Bedrooms</div>
+              <div class="prop-feature"><i class="fa-solid fa-bath"></i> 4 Bathrooms</div>
+              <div class="prop-feature"><i class="fa-solid fa-ruler-combined"></i> 720 sqft</div>
+              <div class="prop-feature"><i class="fa-solid fa-car"></i> 2 Garages</div>
+              <div class="prop-feature"><i class="fa-solid fa-calendar"></i> Built 2020</div>
+              <div class="prop-feature"><i class="fa-solid fa-tag"></i> $319 / sqft</div>
+              <div class="prop-feature"><i class="fa-solid fa-house"></i> House</div>
+            </div>
+            <h3>Description</h3>
+            <p style="font-size:14px;color:var(--textLight);line-height:1.8;margin-bottom:14px">This stunning luxury
+              villa offers breathtaking city views and premium finishes throughout. Featuring an open-plan living area,
+              gourmet kitchen, private pool, and rooftop terrace, this property defines modern luxury living at its
+              finest.</p>
+            <p style="font-size:14px;color:var(--textLight);line-height:1.8;margin-bottom:14px">Located in the heart of
+              Central Park South, residents enjoy world-class dining, shopping, and cultural attractions just steps from
+              their door. This is a rare opportunity to own a truly exceptional residence.</p>
+            <p style="font-size:14px;color:var(--textLight);line-height:1.8">The property features floor-to-ceiling
+              windows, imported Italian marble flooring, a private elevator, and a state-of-the-art home automation
+              system — making this one of the most desirable listings on the market.</p>
+          </div>
+
+          <!-- Property Details table -->
+          <div class="prop-detail-card">
+            <h3>Property Details</h3>
+            <div class="prop-details-table">
+              <div class="prop-details-row"><span>Property ID</span><span>V254680</span></div>
+              <div class="prop-details-row"><span>Price</span><span>$230,000</span></div>
+              <div class="prop-details-row"><span>Property Type</span><span>House</span></div>
+              <div class="prop-details-row"><span>Property Status</span><span>For Sale</span></div>
+              <div class="prop-details-row"><span>Bedrooms</span><span>7</span></div>
+              <div class="prop-details-row"><span>Bathrooms</span><span>4</span></div>
+              <div class="prop-details-row"><span>Garages</span><span>2</span></div>
+              <div class="prop-details-row"><span>Year Built</span><span>2020</span></div>
+            </div>
+          </div>
+
+          <!-- Amenities -->
+          <div class="prop-detail-card">
+            <h3>Amenities &amp; Features</h3>
+            <div class="amenities-grid">
+              <div class="amenity-item"><i class="fa-solid fa-snowflake"></i> Air Conditioning</div>
+              <div class="amenity-item"><i class="fa-solid fa-water-ladder"></i> Swimming Pool</div>
+              <div class="amenity-item"><i class="fa-solid fa-dumbbell"></i> Gym</div>
+              <div class="amenity-item"><i class="fa-solid fa-wifi"></i> High-speed WiFi</div>
+              <div class="amenity-item"><i class="fa-solid fa-fire"></i> Central Heating</div>
+              <div class="amenity-item"><i class="fa-solid fa-shield-halved"></i> Security Alarm</div>
+              <div class="amenity-item"><i class="fa-solid fa-tv"></i> TV Cable</div>
+              <div class="amenity-item"><i class="fa-solid fa-soap"></i> Laundry Room</div>
+              <div class="amenity-item"><i class="fa-solid fa-utensils"></i> Fitted Kitchen</div>
+              <div class="amenity-item"><i class="fa-solid fa-blender"></i> Dishwasher</div>
+              <div class="amenity-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+              <div class="amenity-item"><i class="fa-solid fa-building"></i> Balcony</div>
+            </div>
+          </div>
+
+          <!-- Floor Plan -->
+          <div class="prop-detail-card">
+            <h3>Floor Plan</h3>
+            <img src="./img/floor-plans/floor-plan-1.png" alt="Floor Plan"
+              style="width:100%;border-radius:var(--radius);border:1px solid var(--greyMid)" />
+          </div>
+
+          <!-- What's Nearby -->
+          <div class="prop-detail-card">
+            <h3>What's Nearby</h3>
+            <div class="nearby-grid">
+              <div>
+                <div class="nearby-category"><i class="fa-solid fa-graduation-cap" style="color:#17a2b8"></i> Education
+                </div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> Education Mandarin <span>15.61
+                    miles</span></div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> Marry's Education <span>15.23
+                    miles</span></div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> The Kaplan <span>15.16 miles</span>
+                </div>
+              </div>
+              <div>
+                <div class="nearby-category"><i class="fa-solid fa-heart-pulse" style="color:#28a745"></i> Health &amp;
+                  Medical</div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> Natural Market <span>13.20 miles</span>
+                </div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> Food For Health <span>13.22 miles</span>
+                </div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> A Matter of Health <span>13.34
+                    miles</span></div>
+              </div>
+              <div>
+                <div class="nearby-category"><i class="fa-solid fa-bus" style="color:#dc3545"></i> Transportation</div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> Airport Transportation <span>11.36
+                    miles</span></div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> NYC Executive Limo <span>11.87
+                    miles</span></div>
+                <div class="nearby-item"><i class="fa-solid fa-circle-dot"></i> Empire Limousine <span>11.52
+                    miles</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Property Video -->
+          <div class="prop-detail-card">
+            <h3>Property Video</h3>
+            <div class="prop-video-wrap">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Property Video" frameborder="0"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <!-- Location Map -->
+          <div class="prop-detail-card">
+            <h3>Location</h3>
+            <div class="prop-map-wrap">
+              <iframe src="https://maps.google.com/maps?q=Central+Park+South,+New+York,+NY&output=embed" title="Map"
+                frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <!-- Existing Reviews -->
+          <div class="prop-detail-card">
+            <h3>3 Reviews</h3>
+            <div class="review-list">
+              <div class="review-item">
+                <img src="./img/clients/c-3.jpg" alt="Mary Smith" />
+                <div class="review-item-body">
+                  <div class="review-item-header">
+                    <strong>Mary Smith</strong>
+                    <span class="review-item-stars">★★★★★</span>
+                    <span class="review-item-date">May 30, 2020</span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam, quam congue dictum luctus,
+                    lacus magna congue ante, in finibus dui sapien eu dolor.</p>
+                </div>
+              </div>
+              <div class="review-item">
+                <img src="./img/clients/c-2.jpg" alt="Abraham Tyron" />
+                <div class="review-item-body">
+                  <div class="review-item-header">
+                    <strong>Abraham Tyron</strong>
+                    <span class="review-item-stars">★★★★☆</span>
+                    <span class="review-item-date">June 1, 2020</span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam, quam congue dictum luctus,
+                    lacus magna congue ante, in finibus dui sapien eu dolor.</p>
+                </div>
+              </div>
+              <div class="review-item">
+                <img src="./img/clients/c-1.jpg" alt="Lisa Williams" />
+                <div class="review-item-body">
+                  <div class="review-item-header">
+                    <strong>Lisa Williams</strong>
+                    <span class="review-item-stars">★★★★★</span>
+                    <span class="review-item-date">Jul 12, 2020</span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam, quam congue dictum luctus,
+                    lacus magna congue ante, in finibus dui sapien eu dolor.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Review -->
+          <div class="prop-detail-card">
+            <h3>Add a Review</h3>
+            <p style="font-size:13px;color:var(--textLight);margin-bottom:16px">Your rating for this listing</p>
+            <div class="star-rating mb-4" id="starRating">
+              <i class="fa-regular fa-star" data-val="1"></i>
+              <i class="fa-regular fa-star" data-val="2"></i>
+              <i class="fa-regular fa-star" data-val="3"></i>
+              <i class="fa-regular fa-star" data-val="4"></i>
+              <i class="fa-regular fa-star" data-val="5"></i>
+            </div>
+            <div class="form-row mb-3">
+              <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text"
+                  placeholder="Your name" /></div>
+              <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email"
+                  placeholder="Your email" /></div>
+            </div>
+            <div class="form-group"><label class="form-label">Review</label><textarea class="form-textarea"
+                placeholder="Write your review..."></textarea></div>
+            <button class="btn btn-primary">Submit Review</button>
+          </div>
+
+        </div>
+
+        <!-- ── SIDEBAR ──────────────────────────────────────────── -->
+        <aside>
+
+          <!-- Contact Agent -->
+          <div class="contact-agent-card">
+            <img class="agent-img" src="./img/agents/t-1.jpg" alt="Agent"
+              style="width:70px;height:70px;margin-bottom:10px" />
+            <div class="agent-name">Carls Jhons</div>
+            <div class="agent-role" style="margin-bottom:16px">Senior Real Estate Agent</div>
+            <div class="d-flex gap-2 mb-3">
+              <a href="tel:+1234567890" class="btn btn-primary btn-sm" style="flex:1;justify-content:center"><i
+                  class="fa-solid fa-phone"></i> Call</a>
+              <a href="mailto:agent@findhouses.com" class="btn btn-outline btn-sm"
+                style="flex:1;justify-content:center"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+            <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text"
+                placeholder="John Smith" /></div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email"
+                placeholder="you@example.com" /></div>
+            <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel"
+                placeholder="+1 234 567 890" /></div>
+            <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea"
+                style="min-height:80px" placeholder="Hi, I'm interested in this property."></textarea></div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center" type="submit">Send
+              Message</button>
+            <div class="form-success"><i class="fa-solid fa-circle-check"></i> Message sent to agent!</div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- ── SIMILAR PROPERTIES ───────────────────────────────── -->
+      <div class="prop-detail-card" style="margin-top:28px">
+        <h3>Similar Properties</h3>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="prop-card">
+              <div class="prop-img-wrap">
+                <img src="./img/featured-properties/b-11.jpg" alt="Property" />
+                <span class="prop-badge">For Sale</span>
+                <button class="prop-fav"><i class="fa-regular fa-heart"></i></button>
+              </div>
+              <div class="prop-body">
+                <div class="prop-price">$150,000 <span>/ listing</span></div>
+                <div class="prop-title">Real Luxury Family Villa</div>
+                <div class="prop-location"><i class="fa-solid fa-location-dot"></i> Central Park South, NYC</div>
+                <hr class="prop-divider">
+                <div class="prop-meta">
+                  <span><i class="fa-solid fa-bed"></i> 6 Beds</span>
+                  <span><i class="fa-solid fa-bath"></i> 4 Baths</span>
+                  <span><i class="fa-solid fa-ruler-combined"></i> 720 sqft</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="prop-card">
+              <div class="prop-img-wrap">
+                <img src="./img/featured-properties/b-12.jpg" alt="Property" />
+                <span class="prop-badge">For Sale</span>
+                <button class="prop-fav"><i class="fa-regular fa-heart"></i></button>
+              </div>
+              <div class="prop-body">
+                <div class="prop-price">$289,000 <span>/ listing</span></div>
+                <div class="prop-title">Spacious Suburban Home</div>
+                <div class="prop-location"><i class="fa-solid fa-location-dot"></i> Beverly Hills, LA</div>
+                <hr class="prop-divider">
+                <div class="prop-meta">
+                  <span><i class="fa-solid fa-bed"></i> 5 Beds</span>
+                  <span><i class="fa-solid fa-bath"></i> 3 Baths</span>
+                  <span><i class="fa-solid fa-ruler-combined"></i> 890 sqft</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="prop-card">
+              <div class="prop-img-wrap">
+                <img src="./img/featured-properties/fp-10.jpg" alt="Property" />
+                <span class="prop-badge">For Sale</span>
+                <button class="prop-fav"><i class="fa-regular fa-heart"></i></button>
+              </div>
+              <div class="prop-body">
+                <div class="prop-price">$410,000 <span>/ listing</span></div>
+                <div class="prop-title">Beachfront Penthouse</div>
+                <div class="prop-location"><i class="fa-solid fa-location-dot"></i> South Beach, Miami</div>
+                <hr class="prop-divider">
+                <div class="prop-meta">
+                  <span><i class="fa-solid fa-bed"></i> 4 Beds</span>
+                  <span><i class="fa-solid fa-bath"></i> 3 Baths</span>
+                  <span><i class="fa-solid fa-ruler-combined"></i> 640 sqft</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-logo">Find<span>.</span>Houses</div>
+          <p class="footer-desc">Your trusted real estate partner. Helping families find their perfect home since 2006.
+          </p>
+          <div class="footer-contact">
+            <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i>
+              <p>95 South Park Avenue, USA</p>
+            </div>
+            <div class="footer-contact-item"><i class="fa-solid fa-phone"></i>
+              <p>+456 875 369 208</p>
+            </div>
+            <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i>
+              <p>support@findhouses.com</p>
+            </div>
+          </div>
+          <div class="footer-socials">
+            <a href="#" class="footer-social"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer-social"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="footer-social"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer-social"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="footer-col-title">Navigation</div>
+          <div class="footer-links">
+            <div class="footer-link"><a href="./index.html">Home</a></div>
+            <div class="footer-link"><a href="./listing.html">Listing</a></div>
+            <div class="footer-link"><a href="./about.html">About Us</a></div>
+            <div class="footer-link"><a href="./agents.html">Agents</a></div>
+            <div class="footer-link"><a href="./blog.html">Blog</a></div>
+            <div class="footer-link"><a href="./contact.html">Contact</a></div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-col-title">Latest Tweets</div>
+          <div class="footer-tweet"><i class="fa-brands fa-twitter"></i>
+            <div>
+              <p><a href="#">@Findhouses</a> New luxury listings dropped in Beverly Hills — check them out now!</p>
+              <div class="footer-tweet-time">3 days ago</div>
+            </div>
+          </div>
+          <div class="footer-tweet"><i class="fa-brands fa-twitter"></i>
+            <div>
+              <p><a href="#">@Findhouses</a> Market update: NYC home prices remain strong heading into Q2 2026.</p>
+              <div class="footer-tweet-time">6 days ago</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-col-title">Newsletter</div>
+          <div class="footer-newsletter">
+            <p>Sign up to get the latest listings and market news delivered to your inbox.</p>
+            <div class="footer-email-row">
+              <input class="footer-email-input" type="email" placeholder="Your email address..." />
+              <button class="footer-subscribe">SUBSCRIBE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 FindHouses — All Rights Reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+  <button class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer__header">
+      <span class="site-brand" style="color:var(--dark)!important">Find<span class="dot">.</span>Houses</span>
+      <button class="mobile-drawer__close" id="mobileClose" aria-label="Close"><i
+          class="fa-solid fa-xmark"></i></button>
+    </div>
+    <nav class="mobile-drawer__nav">
+      <a href="./index.html" class="mobile-nav-link">Home</a>
+      <a href="./listing.html" class="mobile-nav-link">Listing</a>
+      <a href="./about.html" class="mobile-nav-link">About Us</a>
+      <a href="./blog.html" class="mobile-nav-link">Blog</a>
+      <a href="./contact.html" class="mobile-nav-link">Contact</a>
+    </nav>
+    <div class="mobile-drawer__footer">
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px"
+        data-modal="add-listing-modal">
+        <i class="fa-solid fa-plus"></i> Add Listing
+      </button>
+    </div>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="./js/global.js"></script>
+  <script src="./js/property.js"></script>
+</body>
+
+</html>

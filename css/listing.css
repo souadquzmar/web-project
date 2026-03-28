@@ -1,0 +1,153 @@
+.listing-wrap {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.listing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.results-count {
+  font-size: 14px;
+  color: var(--textLight);
+  font-weight: 500;
+}
+
+.sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-select {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid var(--greyMid);
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--t), color var(--t);
+  appearance: none;
+}
+
+.sort-select:focus,
+.sort-select:hover {
+  border-color: var(--mainColor);
+  color: var(--mainColor);
+}
+
+.prop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.prop-card-h {
+  display: flex;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t), box-shadow var(--t);
+}
+
+.prop-card-h:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.prop-card-h-img {
+  flex: 0 0 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+.prop-card-h-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.prop-card-h:hover .prop-card-h-img img {
+  transform: scale(1.05);
+}
+
+.prop-card-h-body {
+  flex: 1;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prop-card-h-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--greyMid);
+}
+
+.agent-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agent-mini img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.agent-mini span {
+  font-size: 12px;
+  color: var(--textLight);
+  font-weight: 500;
+}
+
+.prop-date {
+  font-size: 12px;
+  color: var(--textLight);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.prop-date i {
+  color: var(--mainColor);
+}
+
+@media (max-width: 900px) {
+  .listing-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .prop-card-h {
+    flex-direction: column;
+  }
+
+  .prop-card-h-img {
+    flex: none;
+    height: 220px;
+  }
+}
+.page-hero {
+  padding: 140px 0 60px;
+  background: linear-gradient(rgba(26, 28, 35, 0.82), rgba(26, 28, 35, 0.82)),
+    url("https://code-theme.com/html/findhouses/images/bg/bg-details.jpg") center/cover;
+}

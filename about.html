@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — FindHouses</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/about.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-hero" id="navbar">
+    <div class="navbar-inner">
+      <a href="./index.html" class="site-brand" style="color:#fff !important">Find<span class="dot">.</span>Houses</a>
+      <div class="navbar-links"><a href="./index.html" class="nav-link">Home</a><a href="./listing.html"
+          class="nav-link">Listing</a><a href="./about.html" class="nav-link active">About</a><a href="./blog.html"
+          class="nav-link">Blog</a><a href="./contact.html" class="nav-link">Contact</a></div>
+      <div class="navbar-actions">
+        <a href="#" class="nav-link" data-modal="signin-modal">Sign In</a>
+        <div class="navbar-divider"></div>
+        <div class="nav-dropdown">
+          <div class="navbar-user">
+            <img src="./img/navbar/ts-1.jpg" class="navbar-avatar" alt="Mary" />
+            Hi, Mary
+          </div>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="./dashboard.html"><i class="fa-solid fa-gauge fa-fw"></i> Dashboard</a>
+            <a class="nav-dropdown-item" href="./user-profile.html"><i class="fa-regular fa-user fa-fw"></i> Edit
+              Profile</a>
+            <a class="nav-dropdown-item" href="./my-listings.html"><i class="fa-solid fa-house fa-fw"></i> My
+              Properties</a>
+            <a class="nav-dropdown-item" href="./payment-method.html"><i class="fa-solid fa-credit-card fa-fw"></i>
+              Payments</a>
+            <a class="nav-dropdown-item" href="./change-password.html"><i class="fa-solid fa-lock fa-fw"></i> Change
+              Password</a>
+            <a class="nav-dropdown-item" href="./index.html" style="color:var(--mainColor)"><i
+                class="fa-solid fa-right-from-bracket fa-fw"></i> Log Out</a>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-modal="add-listing-modal">
+          <i class="fa-solid fa-plus"></i> Add Listing
+        </button>
+      </div>
+      <button class="navbar-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <!-- Sign In Modal -->
+  <div class="modal-overlay" id="signin-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">Welcome to <span>FindHouses</span></div>
+        <button class="modal-close" data-close><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-target="tab-login">Login</button>
+          <button class="modal-tab" data-target="tab-register">Register</button>
+        </div>
+        <div class="modal-pane active" id="tab-login">
+          <div class="form-group"><label class="form-label">Email or Username</label><input class="form-input"
+              type="text" placeholder="you@example.com" /></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password"
+              placeholder="••••••••" /></div>
+          <div class="form-check-row">
+            <label class="form-check-label"><input type="checkbox" style="accent-color:var(--mainColor)"> Remember
+              me</label>
+            <a href="#" style="font-size:12px;color:var(--mainColor)">Forgot password?</a>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:18px">Log In</button>
+        </div>
+        <div class="modal-pane" id="tab-register">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text"
+                placeholder="John" /></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text"
+                placeholder="Smith" /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email"
+              placeholder="you@example.com" /></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password"
+              placeholder="Min. 8 characters" /></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px">Create
+            Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Listing Modal -->
+  <div class="modal-overlay" id="add-listing-modal">
+    <div class="modal-box" style="max-width:900px">
+      <div class="modal-header">
+        <div class="modal-title">Add New Listing</div>
+        <button class="modal-close" data-close><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding:28px 32px">
+
+        <!-- Step indicator -->
+        <div class="form-steps" id="listingSteps">
+          <div class="form-step active">
+            <div class="form-step-num">1</div>
+            <div class="form-step-label">Info</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">2</div>
+            <div class="form-step-label">Media</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">3</div>
+            <div class="form-step-label">Location</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">4</div>
+            <div class="form-step-label">Details</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">5</div>
+            <div class="form-step-label">Features</div>
+            <div class="form-step-line"></div>
+          </div>
+          <div class="form-step">
+            <div class="form-step-num">6</div>
+            <div class="form-step-label">Contact</div>
+          </div>
+        </div>
+        <!-- Section 1: Description & Price -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Description &amp; Price</div>
+          <div class="form-group">
+            <label class="form-label">Property Title</label>
+            <input class="form-input" type="text" placeholder="e.g. Modern Family Villa in NYC" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Property Description</label>
+            <textarea class="form-textarea" style="min-height:110px"
+              placeholder="Describe your property in detail..."></textarea>
+          </div>
+          <div class="form-row" style="grid-template-columns:repeat(3,1fr)">
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select status</option>
+                <option>For Sale</option>
+                <option>For Rent</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Type</label>
+              <select class="form-select">
+                <option value="" disabled selected>Type</option>
+                <option>House</option>
+                <option>Commercial</option>
+                <option>Apartment</option>
+                <option>Lot</option>
+                <option>Garage</option>
+                <option>Villa</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rooms</label>
+              <select class="form-select">
+                <option value="" disabled selected>Rooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Price (USD)</label>
+              <input class="form-input" type="text" placeholder="e.g. 350,000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Area (sqft)</label>
+              <input class="form-input" type="text" placeholder="e.g. 1,200" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Media -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Media</div>
+          <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+            <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display:none" />
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Click here or drop files to upload</p>
+            <span class="upload-hint">PNG, JPG, MP4 supported</span>
+            <div class="upload-preview" id="uploadPreview"></div>
+          </div>
+        </div>
+
+        <!-- Section 3: Location -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Location</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Address</label>
+              <input class="form-input" type="text" placeholder="e.g. 95 South Park Avenue" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input class="form-input" type="text" placeholder="e.g. New York" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">State</label>
+              <input class="form-input" type="text" placeholder="e.g. NY" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Country</label>
+              <input class="form-input" type="text" placeholder="e.g. USA" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Google Maps Latitude</label>
+              <input class="form-input" type="text" placeholder="e.g. 40.7128" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Google Maps Longitude</label>
+              <input class="form-input" type="text" placeholder="e.g. -74.0060" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Extra Information -->
+        <div class="listing-section">
+          <div class="listing-section-title">Extra Information</div>
+          <div class="form-row" style="grid-template-columns:repeat(3,1fr)">
+            <div class="form-group">
+              <label class="form-label">Property Age</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select Age</option>
+                <option>0–1 years</option>
+                <option>0–5 years</option>
+                <option>0–10 years</option>
+                <option>0–15 years</option>
+                <option>0–20 years</option>
+                <option>0–50 years</option>
+                <option>50+ years</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bedrooms</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select Rooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bathrooms</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select Bathrooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Property Features -->
+        <div class="listing-section">
+          <div class="listing-section-title">Property Features</div>
+          <div class="listing-features">
+            <label class="listing-feature-check"><input type="checkbox" /><span>Air Conditioning</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Swimming Pool</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Central Heating</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Laundry Room</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Gym</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Alarm</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Window Covering</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>WiFi</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>TV Cable</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Dryer</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Microwave</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Washer</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Refrigerator</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Parking</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Balcony</span></label>
+            <label class="listing-feature-check"><input type="checkbox" /><span>Outdoor Shower</span></label>
+          </div>
+        </div>
+
+        <!-- Section 6: Contact Information -->
+        <div class="listing-section" style="margin-bottom:0">
+          <div class="listing-section-title">Contact Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input class="form-input" type="text" placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Username</label>
+              <input class="form-input" type="text" placeholder="Your username" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input class="form-input" type="tel" placeholder="+1 234 567 890" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div
+          style="display:flex;justify-content:flex-end;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--greyMid)">
+          <button class="btn btn-outline" data-close>Cancel</button>
+          <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Listing</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>About FindHouses</h1>
+      <div class="breadcrumb-nav"><a href="./index.html">Home</a><span class="sep">›</span><span class="current">About
+          Us</span></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-img-stack reveal from-left">
+          <img class="img-main" src="./img/popular-places/14.jpg" alt="About" />
+          <img class="img-secondary" src="./img/popular-places/13.jpg" alt="Team" />
+          <div class="about-img-badge">12+<small>Years of Excellence</small></div>
+        </div>
+        <div class="reveal">
+          <div
+            style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--mainColor);background:var(--mainColorLight);padding:5px 14px;border-radius:20px;margin-bottom:16px">
+            Who We Are</div>
+          <h2
+            style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;color:var(--dark);margin-bottom:14px">
+            We Help You Find Your Perfect Home</h2>
+          <div
+            style="width:50px;height:4px;background:linear-gradient(90deg,var(--mainColor),#ff7090);border-radius:2px;margin-bottom:20px">
+          </div>
+          <p style="color:var(--textLight);line-height:1.8;margin-bottom:16px">Founded in 2012, FindHouses has grown
+            into America's most trusted real estate platform. We connect buyers, sellers, and renters with exceptional
+            properties and the expert agents who know them best.</p>
+          <p style="color:var(--textLight);line-height:1.8;margin-bottom:28px">Our mission: make finding your next home
+            as easy and enjoyable as possible — with transparency, expertise, and genuine care at every step.</p>
+          <img src="./img/about-us/signature.png" alt="Signature" style="height:52px;margin-bottom:24px" />
+          <div class="about-perks">
+            <div class="about-perk">
+              <div class="about-perk-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div>
+                <h5>Fully Licensed</h5>
+                <p>All agents are verified and background-checked.</p>
+              </div>
+            </div>
+            <div class="about-perk">
+              <div class="about-perk-icon"><i class="fa-solid fa-trophy"></i></div>
+              <div>
+                <h5>Award Winning</h5>
+                <p>200+ industry awards since 2012.</p>
+              </div>
+            </div>
+            <div class="about-perk">
+              <div class="about-perk-icon"><i class="fa-solid fa-handshake"></i></div>
+              <div>
+                <h5>5-Star Service</h5>
+                <p>98% client satisfaction rate.</p>
+              </div>
+            </div>
+            <div class="about-perk">
+              <div class="about-perk-icon"><i class="fa-solid fa-globe"></i></div>
+              <div>
+                <h5>Nationwide</h5>
+                <p>Serving 50+ major cities across the US.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section-grey">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stats-cell">
+          <div class="stat-number">345+</div>
+          <div class="stat-label">Homes Sold</div>
+        </div>
+        <div class="stats-cell">
+          <div class="stat-number">432+</div>
+          <div class="stat-label">Listings</div>
+        </div>
+        <div class="stats-cell">
+          <div class="stat-number">840+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stats-cell">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What Sets Us Apart</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="feature-card">
+            <div class="feature-card__icon"><img src="./img/choose-us/icon-1.svg" alt="" /></div>
+            <h4>Wide Selection</h4>
+            <p>Thousands of curated properties across every city, budget, and style.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="feature-card">
+            <div class="feature-card__icon"><img src="./img/choose-us/icon-2.svg" alt="" /></div>
+            <h4>Trusted Experts</h4>
+            <p>Verified agents with deep local knowledge and a track record of results.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="feature-card">
+            <div class="feature-card__icon"><img src="./img/choose-us/icon-3.svg" alt="" /></div>
+            <h4>Easy Finance</h4>
+            <p>Connect with top lenders and get pre-approved in minutes.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 reveal">
+          <div class="feature-card">
+            <div class="feature-card__icon"><img src="./img/choose-us/icon-4.svg" alt="" /></div>
+            <h4>Always Nearby</h4>
+            <p>Local agents in every major city ready to guide you in person.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section section-grey">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Leadership Team</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="team-grid">
+        <div class="reveal">
+          <div class="agent-card">
+            <img class="agent-img" src="./img/agents/t-1.jpg" alt="Carls Jhons" />
+            <div class="agent-name">Carls Jhons</div>
+            <div class="agent-role">CEO & Founder</div>
+            <div class="agent-socials">
+              <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="agent-card">
+            <img class="agent-img" src="./img/agents/t-2.jpg" alt="Arling Tracy" />
+            <div class="agent-name">Arling Tracy</div>
+            <div class="agent-role">Head of Operations</div>
+            <div class="agent-socials">
+              <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="agent-card">
+            <img class="agent-img" src="./img/agents/t-3.jpg" alt="Mark Web" />
+            <div class="agent-name">Mark Web</div>
+            <div class="agent-role">Director of Sales</div>
+            <div class="agent-socials">
+              <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5 reveal">
+        <a href="./agents.html" class="btn btn-dark btn-lg btn-pill">Meet All Agents <i
+            class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="section" style="padding-top:60px;padding-bottom:60px">
+    <div class="container">
+      <div class="section-header reveal" style="margin-bottom:36px">
+        <h2>Our Partners</h2>
+        <div class="accent-line"></div>
+      </div>
+    </div>
+    <div class="swiper swiper-partners">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-1.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-2.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-3.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-4.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-5.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-6.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-1.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-2.jpg" alt="Partner" /></div>
+        <div class="swiper-slide"><img class="partner-logo" src="./img/partners/p-3.jpg" alt="Partner" /></div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-logo">Find<span>.</span>Houses</div>
+          <p class="footer-desc">Your trusted real estate partner. Helping families find their perfect home since 2006.
+          </p>
+          <div class="footer-contact">
+            <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i>
+              <p>95 South Park Avenue, USA</p>
+            </div>
+            <div class="footer-contact-item"><i class="fa-solid fa-phone"></i>
+              <p>+456 875 369 208</p>
+            </div>
+            <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i>
+              <p>support@findhouses.com</p>
+            </div>
+          </div>
+          <div class="footer-socials">
+            <a href="#" class="footer-social"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer-social"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="footer-social"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer-social"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="footer-col-title">Navigation</div>
+          <div class="footer-links">
+            <div class="footer-link"><a href="./index.html">Home</a></div>
+            <div class="footer-link"><a href="./listing.html">Listing</a></div>
+            <div class="footer-link"><a href="./about.html">About Us</a></div>
+            <div class="footer-link"><a href="./agents.html">Agents</a></div>
+            <div class="footer-link"><a href="./blog.html">Blog</a></div>
+            <div class="footer-link"><a href="./contact.html">Contact</a></div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-col-title">Latest Tweets</div>
+          <div class="footer-tweet"><i class="fa-brands fa-twitter"></i>
+            <div>
+              <p><a href="#">@Findhouses</a> New luxury listings dropped in Beverly Hills — check them out now!</p>
+              <div class="footer-tweet-time">3 days ago</div>
+            </div>
+          </div>
+          <div class="footer-tweet"><i class="fa-brands fa-twitter"></i>
+            <div>
+              <p><a href="#">@Findhouses</a> Market update: NYC home prices remain strong heading into Q2 2026.</p>
+              <div class="footer-tweet-time">6 days ago</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-col-title">Newsletter</div>
+          <div class="footer-newsletter">
+            <p>Sign up to get the latest listings and market news delivered to your inbox.</p>
+            <div class="footer-email-row">
+              <input class="footer-email-input" type="email" placeholder="Your email address..." />
+              <button class="footer-subscribe">SUBSCRIBE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 FindHouses — All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <button class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="./js/global.js"></script>
+  <script src="./js/about.js"></script>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer__header">
+      <span class="site-brand" style="color:var(--dark)!important">Find<span class="dot">.</span>Houses</span>
+      <button class="mobile-drawer__close" id="mobileClose" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <nav class="mobile-drawer__nav">
+      <a href="./index.html" class="mobile-nav-link">Home</a>
+      <a href="./listing.html" class="mobile-nav-link">Listing</a>
+      <a href="./about.html" class="mobile-nav-link">About Us</a>
+      <a href="./blog.html" class="mobile-nav-link">Blog</a>
+      <a href="./contact.html" class="mobile-nav-link">Contact</a>
+    </nav>
+    <div class="mobile-drawer__footer">
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px"
+        data-modal="add-listing-modal">
+        <i class="fa-solid fa-plus"></i> Add Listing
+      </button>
+    </div>
+  </aside>
+</body>
+
+</html>
