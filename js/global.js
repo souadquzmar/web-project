@@ -126,6 +126,13 @@ function initFavs() {
   document.querySelectorAll('.prop-fav').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
+      /* If the button is inside a real form, let the form submit */
+      const form = btn.closest('form');
+      if (form && form.getAttribute('action')) {
+        /* The form will submit naturally — just let it go */
+        return;
+      }
+      /* No form — just toggle the icon (static demo mode or not-logged-in) */
       btn.classList.toggle('active');
       const icon = btn.querySelector('i');
       if (icon) {
@@ -141,6 +148,9 @@ function initNewsletter() {
     const btn = row.querySelector('.footer-subscribe');
     const input = row.querySelector('.footer-email-input');
     if (!btn || !input) return;
+    /* The form already has action= for PHP — just add visual feedback */
+    const form = row.closest('form') || row;
+    if (form.tagName === 'FORM' && form.getAttribute('action')) return; /* Let the HTML form handle it */
     btn.addEventListener('click', () => {
       if (!input.value.includes('@')) return;
       const orig = btn.textContent;
@@ -298,6 +308,15 @@ function initFormValidation() {
       input.addEventListener('input', () => { if (input.classList.contains('error')) validateField(input); });
     });
     form.addEventListener('submit', e => {
+      /* If the form has a real action (PHP backend), validate then let it submit normally */
+      if (form.getAttribute('action') && form.getAttribute('action') !== '#') {
+        let valid = true;
+        form.querySelectorAll('.form-input[required], .form-textarea[required]').forEach(input => { if (!validateField(input)) valid = false; });
+        if (!valid) { e.preventDefault(); return; }
+        /* valid → let the browser submit to PHP */
+        return;
+      }
+      /* No real action → prevent default (static demo behaviour) */
       e.preventDefault();
       let valid = true;
       form.querySelectorAll('.form-input[required], .form-textarea[required]').forEach(input => { if (!validateField(input)) valid = false; });
@@ -394,4 +413,51 @@ document.addEventListener('DOMContentLoaded', () => {
   initListingSteps();
   initListingFilter();
   initKeyboardNav();
+  initForgotPassword();
+  initDarkMode();
 });
+
+/* ── Forgot Password toggle ──────────────────────────────── */
+function initForgotPassword() {
+  const showBtn = document.getElementById('showForgotPassword');
+  const backBtn = document.getElementById('backToLogin');
+  const loginForm = document.querySelector('#tab-login > form');
+  const forgotForm = document.getElementById('forgotPasswordForm');
+  if (!showBtn || !forgotForm || !loginForm) return;
+
+  showBtn.addEventListener('click', e => {
+    e.preventDefault();
+    loginForm.style.display = 'none';
+    forgotForm.style.display = 'block';
+  });
+  backBtn?.addEventListener('click', e => {
+    e.preventDefault();
+    forgotForm.style.display = 'none';
+    loginForm.style.display = 'block';
+  });
+}
+
+/* ── Dark / Light Mode ───────────────────────────────────── */
+function initDarkMode() {
+  const saved = localStorage.getItem('fh-theme');
+  if (saved === 'dark') document.documentElement.classList.add('dark-mode');
+
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  updateThemeIcon(btn);
+
+  btn.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark-mode');
+    const isDark = document.documentElement.classList.contains('dark-mode');
+    localStorage.setItem('fh-theme', isDark ? 'dark' : 'light');
+    updateThemeIcon(btn);
+  });
+}
+
+function updateThemeIcon(btn) {
+  const isDark = document.documentElement.classList.contains('dark-mode');
+  btn.innerHTML = isDark
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
+  btn.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}

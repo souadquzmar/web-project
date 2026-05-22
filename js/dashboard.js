@@ -145,24 +145,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (typeof Chart !== 'undefined') {
+    const D = window.DASH_CHART_DATA || {};
     const ctx1 = document.getElementById('chartViews');
-    if (ctx1) {
+    if (ctx1 && D.months) {
       new Chart(ctx1, {
         type: 'line',
         data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: D.months,
           datasets: [
             {
-              label: 'Views',
-              data: [820, 940, 780, 1100, 1350, 1200, 1480, 1620, 1390, 1700, 1550, 1820],
+              label: D.viewsLabel || 'Views',
+              data: D.views || [],
               borderColor: '#ff385c',
               backgroundColor: 'rgba(255,56,92,0.08)',
               borderWidth: 2.5, tension: 0.4, fill: true,
               pointRadius: 3, pointBackgroundColor: '#ff385c',
             },
             {
-              label: 'Inquiries',
-              data: [120, 145, 110, 180, 210, 195, 240, 280, 220, 310, 260, 340],
+              label: D.inquiriesLabel || 'Inquiries',
+              data: D.inquiries || [],
               borderColor: '#3b82f6',
               backgroundColor: 'rgba(59,130,246,0.06)',
               borderWidth: 2, tension: 0.4, fill: true,
@@ -185,12 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const ctx2 = document.getElementById('chartStatus');
-    if (ctx2) {
+    if (ctx2 && D.donutData) {
       new Chart(ctx2, {
         type: 'doughnut',
         data: {
-          labels: ['Active', 'Pending', 'Inactive'],
-          datasets: [{ data: [268, 52, 25], backgroundColor: ['#22c55e', '#f59e0b', '#ef4444'], borderWidth: 0, hoverOffset: 8 }],
+          labels: D.donutLabels || ['Active', 'Pending', 'Inactive'],
+          datasets: [{ data: D.donutData, backgroundColor: ['#22c55e', '#f59e0b', '#ef4444'], borderWidth: 0, hoverOffset: 8 }],
         },
         options: {
           responsive: true, cutout: '68%',
