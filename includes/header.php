@@ -43,7 +43,7 @@ $brand_color  = $dash_mode ? '' : 'style="color:#fff !important"';
       <?php if ($u): ?>
         <div class="nav-dropdown">
           <div class="navbar-user">
-            <img src="<?= e(avatar_url($u['avatar'])) ?>" class="navbar-avatar" alt="<?= e($u['first_name']) ?>"/>
+            <img src="<?= e(avatar_url($u['avatar'] ?? '', $u['id'] ?? 0)) ?>" class="navbar-avatar" alt="<?= e($u['first_name']) ?>"/>
             Hi, <?= e($u['first_name']) ?>
           </div>
           <div class="nav-dropdown-menu">
@@ -53,7 +53,6 @@ $brand_color  = $dash_mode ? '' : 'style="color:#fff !important"';
             <a class="nav-dropdown-item" href="my-listings.php"><i class="fa-solid fa-house fa-fw"></i> My Properties</a>
             <?php endif; ?>
             <a class="nav-dropdown-item" href="favorited-listings.php"><i class="fa-solid fa-heart fa-fw"></i> Favorites</a>
-            <a class="nav-dropdown-item" href="payment-method.php"><i class="fa-solid fa-credit-card fa-fw"></i> Payments</a>
             <a class="nav-dropdown-item" href="change-password.php"><i class="fa-solid fa-lock fa-fw"></i> Change Password</a>
             <a class="nav-dropdown-item" href="actions/logout.php" style="color:var(--mainColor)"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Log Out</a>
           </div>

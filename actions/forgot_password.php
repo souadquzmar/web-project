@@ -36,14 +36,8 @@ if ($user) {
     $db->query("UPDATE password_resets SET used=1 WHERE email='" . $db->real_escape_string($email) . "' AND used=0");
 
     // Store token
-    // Store token using MySQL time
-    $stmt = $db->prepare(
-    "
-    INSERT INTO password_resets (email, token, expires_at, used)
-    VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR), 0)
-    "
-     );
-    $stmt->bind_param('ss', $email, $token);
+    $stmt = $db->prepare('INSERT INTO password_resets (email, token, expires_at) VALUES (?,?,?)');
+    $stmt->bind_param('sss', $email, $token, $expires);
     $stmt->execute();
     $stmt->close();
 

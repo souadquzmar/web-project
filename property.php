@@ -40,8 +40,8 @@ if (empty($images) && $prop['cover_image']) {
 $feat_res = $db->query("SELECT feature FROM property_features WHERE property_id = $id");
 $features = $feat_res->fetch_all(MYSQLI_ASSOC);
 
-// Fetch reviews
-$rev_res = $db->query("SELECT * FROM reviews WHERE property_id = $id ORDER BY created_at DESC");
+// Fetch reviews with user avatar data
+$rev_res = $db->query("SELECT r.*, u.avatar as reviewer_avatar FROM reviews r LEFT JOIN users u ON u.id = r.user_id WHERE r.property_id = $id ORDER BY r.created_at DESC");
 $reviews = $rev_res->fetch_all(MYSQLI_ASSOC);
 
 // Similar properties
@@ -172,7 +172,7 @@ include __DIR__ . '/includes/header.php';
             <div class="review-list">
               <?php foreach ($reviews as $r): ?>
               <div class="review-item">
-                <img src="img/clients/c-1.jpg" alt="<?= e($r['name']) ?>"/>
+                <img src="<?= e(avatar_url($r['reviewer_avatar'] ?? '', $r['user_id'] ?? crc32($r['name']))) ?>" alt="<?= e($r['name']) ?>"/>
                 <div class="review-item-body">
                   <div class="review-item-header">
                     <strong><?= e($r['name']) ?></strong>
@@ -223,7 +223,7 @@ include __DIR__ . '/includes/header.php';
         <aside>
           <!-- Contact Agent -->
           <div class="contact-agent-card">
-            <img class="agent-img" src="<?= e(avatar_url($prop['avatar'])) ?>" alt="Agent" style="width:70px;height:70px;margin-bottom:10px"/>
+            <img class="agent-img" src="<?= e(avatar_url($prop['avatar'] ?? '', $prop['user_id'] ?? 0)) ?>" alt="Agent" style="width:70px;height:70px;margin-bottom:10px"/>
             <div class="agent-name"><?= e($prop['first_name'] . ' ' . $prop['last_name']) ?></div>
             <div class="agent-role" style="margin-bottom:16px"><?= e(ucfirst($prop['role'])) ?></div>
             <div class="d-flex gap-2 mb-3">

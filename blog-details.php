@@ -14,8 +14,8 @@ $stmt->close();
 if (!$post) { header('Location: blog.php'); exit; }
 $db->query("UPDATE blog_posts SET views=views+1 WHERE id=$id");
 
-// Fetch comments for this blog post
-$comments = $db->query("SELECT * FROM blog_comments WHERE blog_id=$id ORDER BY created_at DESC")->fetch_all(MYSQLI_ASSOC);
+// Fetch comments for this blog post with user avatars
+$comments = $db->query("SELECT c.*, u.avatar as commenter_avatar FROM blog_comments c LEFT JOIN users u ON u.id = c.user_id WHERE c.blog_id=$id ORDER BY c.created_at DESC")->fetch_all(MYSQLI_ASSOC);
 
 // Recent posts for sidebar
 $recent = $db->query("SELECT * FROM blog_posts WHERE published=1 AND id != $id ORDER BY created_at DESC LIMIT 4")->fetch_all(MYSQLI_ASSOC);
@@ -57,7 +57,7 @@ include __DIR__ . '/includes/header.php';
             <?= render_flash() ?>
             <?php foreach ($comments as $c): ?>
             <div style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--greyMid)">
-              <img src="img/clients/c-1.jpg" alt="<?= e($c['name']) ?>" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0" />
+              <img src="<?= e(avatar_url($c['commenter_avatar'] ?? '', $c['user_id'] ?? crc32($c['name']))) ?>" alt="<?= e($c['name']) ?>" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0" />
               <div>
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
                   <strong style="font-size:14px"><?= e($c['name']) ?></strong>

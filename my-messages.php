@@ -34,7 +34,7 @@ include __DIR__ . '/includes/header.php';
             <div class="dash-card-title">Messages (<?= count($msgs) ?>)</div>
             <?php foreach ($msgs as $m): ?>
             <div class="msg-item" style="padding:16px 0;border-bottom:1px solid var(--greyMid)">
-              <img src="img/navbar/ts-1.jpg" class="msg-avatar" />
+              <img src="<?= e(avatar_url('', crc32($m['sender_email'] ?? ''))) ?>" class="msg-avatar" />
               <div style="flex:1">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                   <span class="msg-name"><?= e($m['sender_name']) ?></span>

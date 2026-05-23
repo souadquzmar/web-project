@@ -6,7 +6,7 @@ $role = $u['role'] ?? 'user';
 ?>
         <aside class="dash-sidebar">
           <div class="dash-profile">
-            <img src="<?= e(avatar_url($u['avatar'] ?? '')) ?>" class="dash-avatar" alt="<?= e($u['first_name']) ?>" />
+            <img src="<?= e(avatar_url($u['avatar'] ?? '', $u['id'] ?? 0)) ?>" class="dash-avatar" alt="<?= e($u['first_name']) ?>" />
             <div class="dash-name"><?= e($u['first_name'] . ' ' . $u['last_name']) ?></div>
             <div class="dash-role">
               <?php if ($role === 'admin'): ?>
@@ -36,8 +36,6 @@ $role = $u['role'] ?? 'user';
 
             <?php if ($role === 'admin' || $role === 'agent'): ?>
             <a href="my-messages.php" class="dash-nav-link<?= $dash_active==='messages'?' active':'' ?>"><i class="fa-solid fa-envelope"></i> Messages</a>
-            <a href="payment-method.php" class="dash-nav-link<?= $dash_active==='payments'?' active':'' ?>"><i class="fa-solid fa-credit-card"></i> Payments</a>
-            <a href="invoice.php" class="dash-nav-link<?= $dash_active==='invoices'?' active':'' ?>"><i class="fa-solid fa-file-invoice"></i> Invoices</a>
             <?php endif; ?>
             <a href="change-password.php" class="dash-nav-link<?= $dash_active==='password'?' active':'' ?>"><i class="fa-solid fa-lock"></i> Change Password</a>
 

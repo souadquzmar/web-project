@@ -245,13 +245,11 @@ include __DIR__ . '/includes/header.php';
       </div>
       <div class="row g-4">
         <?php 
-        $agent_imgs = ['img/agents/t-1.jpg','img/agents/t-2.jpg','img/agents/t-3.jpg','img/agents/t-4.jpg'];
-        $ai = 0;
         while ($ag = $agents->fetch_assoc()):
         ?>
         <div class="col-lg-3 col-md-6 reveal">
           <div class="agent-card">
-            <img class="agent-img" src="<?= e($agent_imgs[$ai++] ?? 'img/agents/t-1.jpg') ?>" alt="<?= e($ag['first_name']) ?>" />
+            <img class="agent-img" src="<?= e(avatar_url($ag['avatar'] ?? '', $ag['id'])) ?>" alt="<?= e($ag['first_name']) ?>" />
             <div class="agent-name"><?= e($ag['first_name'] . ' ' . $ag['last_name']) ?></div>
             <div class="agent-role"><?= e(ucfirst($ag['role'])) ?></div>
             <div class="agent-socials">
@@ -287,7 +285,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="review-stars"><?= stars((int)$t['rating']) ?></div>
                 <p class="review-text">"<?= e($t['body']) ?>"</p>
                 <div class="d-flex align-items-center">
-                  <img class="reviewer-img" src="img/clients/c-1.jpg" alt="<?= e($t['name']) ?>" />
+                  <img class="reviewer-img" src="<?= e(avatar_url('', crc32($t['name']))) ?>" alt="<?= e($t['name']) ?>" />
                   <div>
                     <div class="reviewer-name"><?= e($t['name']) ?></div>
                     <div class="reviewer-city"><?= e($t['prop_title']) ?></div>

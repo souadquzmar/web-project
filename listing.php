@@ -19,47 +19,47 @@ $q = $_GET['q'] ?? '';
 $sort = $_GET['sort'] ?? 'newest';
 
 // Build WHERE clause
-$where = ["listing_status='active'"];
+$where = ["p.listing_status='active'"];
 $params = [];
 $types = '';
 
 if ($status) {
-    $where[] = "status=?";
+    $where[] = "p.status=?";
     $params[] = $status;
     $types .= 's';
 }
 if ($type) {
-    $where[] = "type=?";
+    $where[] = "p.type=?";
     $params[] = $type;
     $types .= 's';
 }
 if ($city) {
-    $where[] = "city=?";
+    $where[] = "p.city=?";
     $params[] = $city;
     $types .= 's';
 }
 if ($bedrooms) {
-    $where[] = "bedrooms>=?";
+    $where[] = "p.bedrooms>=?";
     $params[] = (int)$bedrooms;
     $types .= 'i';
 }
 if ($bathrooms) {
-    $where[] = "bathrooms>=?";
+    $where[] = "p.bathrooms>=?";
     $params[] = (int)$bathrooms;
     $types .= 'i';
 }
 if ($min_price) {
-    $where[] = "price>=?";
+    $where[] = "p.price>=?";
     $params[] = (float)$min_price;
     $types .= 'd';
 }
 if ($max_price) {
-    $where[] = "price<=?";
+    $where[] = "p.price<=?";
     $params[] = (float)$max_price;
     $types .= 'd';
 }
 if ($q) {
-    $where[] = "(title LIKE ? OR description LIKE ? OR address LIKE ?)";
+    $where[] = "(p.title LIKE ? OR p.description LIKE ? OR p.address LIKE ?)";
     $search = "%$q%";
     $params[] = $search;
     $params[] = $search;
@@ -81,7 +81,8 @@ $page = max(1, (int)($_GET['page'] ?? 1));
 $offset = ($page - 1) * $per_page;
 
 // Count total
-$count_sql = "SELECT COUNT(*) FROM properties WHERE $where_clause";
+$count_where = str_replace('p.', '', $where_clause);
+$count_sql = "SELECT COUNT(*) FROM properties WHERE $count_where";
 if ($types) {
     $stmt = $db->prepare($count_sql);
     $stmt->bind_param($types, ...$params);
@@ -224,7 +225,7 @@ include __DIR__ . '/includes/header.php';
                 </div>
                 <div class="prop-card-h-footer">
                   <div class="agent-mini">
-                    <img src="<?= e(avatar_url($p['avatar'])) ?>" alt="<?= e($p['first_name']) ?>" />
+                    <img src="<?= e(avatar_url($p['avatar'] ?? '', $p['user_id'] ?? 0)) ?>" alt="<?= e($p['first_name']) ?>" />
                     <span><?= e($p['first_name'] . ' ' . $p['last_name']) ?></span>
                   </div>
                   <div class="prop-date"><i class="fa-regular fa-calendar"></i><?= e(time_ago($p['created_at'])) ?></div>

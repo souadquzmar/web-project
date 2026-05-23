@@ -150,13 +150,11 @@ include __DIR__ . '/includes/header.php';
       </div>
       <div class="team-grid">
         <?php 
-        $team_imgs = ['img/agents/t-1.jpg','img/agents/t-2.jpg','img/agents/t-3.jpg','img/agents/t-4.jpg','img/agents/t-5.jpg','img/agents/t-6.jpg'];
-        $ti = 0;
         foreach ($team as $member): 
         ?>
         <div class="reveal">
           <div class="agent-card">
-            <img class="agent-img" src="<?= e($team_imgs[$ti++ % count($team_imgs)]) ?>" alt="<?= e($member['first_name'] . ' ' . $member['last_name']) ?>" />
+            <img class="agent-img" src="<?= e(avatar_url($member['avatar'] ?? '', $member['id'])) ?>" alt="<?= e($member['first_name'] . ' ' . $member['last_name']) ?>" />
             <div class="agent-name"><?= e($member['first_name'] . ' ' . $member['last_name']) ?></div>
             <div class="agent-role"><?= e(ucfirst($member['role'])) ?></div>
             <div class="agent-socials">

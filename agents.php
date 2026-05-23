@@ -22,13 +22,11 @@ include __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="row g-4">
         <?php 
-        $agent_imgs = ['img/agents/t-1.jpg','img/agents/t-2.jpg','img/agents/t-3.jpg','img/agents/t-4.jpg','img/agents/t-5.jpg','img/agents/t-6.jpg'];
-        $ai = 0;
         foreach ($agents as $a): 
         ?>
         <div class="col-lg-3 col-md-6">
           <div class="agent-card">
-            <img class="agent-img" src="<?= e($agent_imgs[$ai++ % count($agent_imgs)]) ?>" alt="<?= e($a['first_name']) ?>" />
+            <img class="agent-img" src="<?= e(avatar_url($a['avatar'] ?? '', $a['id'])) ?>" alt="<?= e($a['first_name']) ?>" />
             <div class="agent-name"><?= e($a['first_name'] . ' ' . $a['last_name']) ?></div>
             <div class="agent-role"><?= e(ucfirst($a['role'])) ?></div>
             <div class="agent-socials">

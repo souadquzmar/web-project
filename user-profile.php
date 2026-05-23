@@ -30,7 +30,7 @@ include __DIR__ . '/includes/header.php';
               <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
               <div class="profile-avatar-wrap">
                 <div class="avatar-img-wrap">
-                  <img src="<?= e(avatar_url($user['avatar'] ?? '')) ?>" alt="Avatar" id="profileAvatarImg" />
+                  <img src="<?= e(avatar_url($user['avatar'] ?? '', $user['id'] ?? 0)) ?>" alt="Avatar" id="profileAvatarImg" />
                   <div id="avatarOverlay" class="avatar-overlay">
                     <i class="fa-solid fa-camera"></i>
                   </div>

@@ -66,7 +66,7 @@ include __DIR__ . '/includes/header.php';
                   <?php foreach ($users as $row): ?>
                   <tr>
                     <td>
-                      <div class="prop-cell"><img src="<?= e(avatar_url($row['avatar'] ?? '')) ?>" class="prop-img-sm" style="border-radius:50%" /><span class="prop-name"><?= e($row['first_name'] . ' ' . $row['last_name']) ?></span></div>
+                      <div class="prop-cell"><img src="<?= e(avatar_url($row['avatar'] ?? '', $row['id'] ?? 0)) ?>" class="prop-img-sm" style="border-radius:50%" /><span class="prop-name"><?= e($row['first_name'] . ' ' . $row['last_name']) ?></span></div>
                     </td>
                     <td><?= e($row['email']) ?></td>
                     <td>

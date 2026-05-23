@@ -73,14 +73,19 @@ function prop_img_url(string $filename): string
     return 'img/featured-properties/' . $filename;
 }
 
-/** Avatar URL helper */
-function avatar_url(string $filename): string
+/** Avatar URL helper — returns uploaded avatar or a consistent default */
+function avatar_url(?string $filename, ?int $user_id = null): string
 {
-    $uploaded = __DIR__ . '/../uploads/avatars/' . $filename;
-    if (file_exists($uploaded)) {
-        return 'uploads/avatars/' . $filename;
+    if ($filename) {
+        $uploaded = __DIR__ . '/../uploads/avatars/' . $filename;
+        if (file_exists($uploaded)) {
+            return 'uploads/avatars/' . $filename;
+        }
     }
-    return 'img/navbar/ts-1.jpg';
+    // Consistent default: pick from available defaults based on user_id
+    $defaults = ['img/agents/t-1.jpg','img/agents/t-2.jpg','img/agents/t-3.jpg','img/agents/t-4.jpg','img/agents/t-5.jpg','img/agents/t-6.jpg'];
+    $idx = $user_id ? ($user_id % count($defaults)) : 0;
+    return $defaults[$idx];
 }
 
 /** Star rating HTML */

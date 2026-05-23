@@ -179,41 +179,6 @@ CREATE TABLE IF NOT EXISTS newsletter (
 ) ENGINE=InnoDB;
 
 -- ────────────────────────────────────────────────────────────
---  PAYMENT METHODS  (stored card info — masked)
--- ────────────────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS payment_methods (
-    id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    user_id      INT UNSIGNED NOT NULL,
-    card_type    VARCHAR(20)  NOT NULL DEFAULT 'Visa',
-    last_four    CHAR(4)      NOT NULL,
-    cardholder   VARCHAR(120) NOT NULL,
-    expiry_month CHAR(2)      NOT NULL,
-    expiry_year  CHAR(4)      NOT NULL,
-    is_default   TINYINT(1)   NOT NULL DEFAULT 0,
-    created_at   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- ────────────────────────────────────────────────────────────
---  INVOICES
--- ────────────────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS invoices (
-    id          INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    user_id     INT UNSIGNED     NOT NULL,
-    property_id INT UNSIGNED              DEFAULT NULL,
-    amount      DECIMAL(12,2)    NOT NULL,
-    description VARCHAR(255)     NOT NULL,
-    status      ENUM('paid','pending','overdue') NOT NULL DEFAULT 'pending',
-    issued_at   DATE             NOT NULL,
-    due_at      DATE                       DEFAULT NULL,
-    paid_at     DATETIME                   DEFAULT NULL,
-    created_at  DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id)     REFERENCES users(id)      ON DELETE CASCADE,
-    FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE SET NULL
-) ENGINE=InnoDB;
-
 -- ============================================================
 --  SAMPLE SEED DATA
 -- ============================================================
@@ -258,12 +223,6 @@ INSERT INTO blog_posts (author_id, title, slug, excerpt, body, cover_image, cate
 INSERT INTO contact_submissions (name, email, phone, subject, body) VALUES
   ('John Doe','john@example.com','+1 555 999 8888','Property Inquiry','I am interested in the beachfront condo listing. Please contact me.');
 
--- Sample invoice
-INSERT INTO invoices (user_id, property_id, amount, description, status, issued_at, due_at) VALUES
-  (1, 1, 299.00, 'Featured Listing — Real Luxury Family Villa', 'paid',   '2026-01-10', '2026-01-20'),
-  (1, 2, 199.00, 'Standard Listing — Modern Downtown Penthouse', 'pending','2026-02-01', '2026-02-15'),
-  (1, 3, 149.00, 'Standard Listing — Spacious Suburban Home',    'overdue','2025-12-01', '2025-12-15');
-
 -- ────────────────────────────────────────────────────────────
 --  BLOG COMMENTS
 -- ────────────────────────────────────────────────────────────
@@ -294,5 +253,6 @@ CREATE TABLE IF NOT EXISTS password_resets (
     INDEX (token),
     INDEX (email)
 ) ENGINE=InnoDB;
+
 
 

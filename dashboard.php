@@ -33,8 +33,10 @@ if ($role === 'admin') {
 
     // Admin sees ALL reviews
     $reviews = $db->query(
-        "SELECT r.*, p.title as prop_title FROM reviews r
+        "SELECT r.*, p.title as prop_title, ru.avatar as reviewer_avatar
+         FROM reviews r
          JOIN properties p ON p.id = r.property_id
+         LEFT JOIN users ru ON ru.id = r.user_id
          ORDER BY r.created_at DESC LIMIT 5"
     )->fetch_all(MYSQLI_ASSOC);
 
@@ -63,8 +65,10 @@ if ($role === 'admin') {
 
     // Agent sees reviews on their properties
     $reviews = $db->query(
-        "SELECT r.*, p.title as prop_title FROM reviews r
+        "SELECT r.*, p.title as prop_title, ru.avatar as reviewer_avatar
+         FROM reviews r
          JOIN properties p ON p.id = r.property_id
+         LEFT JOIN users ru ON ru.id = r.user_id
          WHERE p.user_id={$u['id']} ORDER BY r.created_at DESC LIMIT 3"
     )->fetch_all(MYSQLI_ASSOC);
 
@@ -272,7 +276,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="msg-list">
                   <?php foreach ($messages as $m): ?>
                   <div class="msg-item">
-                    <img src="img/navbar/ts-1.jpg" class="msg-avatar" />
+                    <img src="<?= e(avatar_url('', crc32($m['sender_email'] ?? ''))) ?>" class="msg-avatar" />
                     <div>
                       <div><span class="msg-name"><?= e($m['sender_name']) ?></span><span class="msg-time"><?= e(time_ago($m['created_at'])) ?></span></div>
                       <p class="msg-text"><?= e(mb_substr($m['body'], 0, 80)) ?>...</p>
@@ -292,7 +296,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="review-list-dash">
                   <?php foreach ($reviews as $r): ?>
                   <div class="review-item-dash">
-                    <img src="img/agents/t-4.jpg" />
+                    <img src="<?= e(avatar_url($r['reviewer_avatar'] ?? '', $r['user_id'] ?? crc32($r['name'] ?? ''))) ?>" />
                     <div>
                       <div class="review-prop-name"><?= e($r['prop_title']) ?></div>
                       <div class="review-by">by <?= e($r['name']) ?> · <span class="review-time"><?= e(time_ago($r['created_at'])) ?></span></div>

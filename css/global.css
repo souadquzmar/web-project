@@ -2782,3 +2782,475 @@ html.dark-mode .theme-toggle {
   border-color: #4b5563;
   color: #f1f1f1;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE — EXTENDED FIXES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hero search bar — keep white in dark mode */
+html.dark-mode .hero-search-wrap,
+html.dark-mode .search-form {
+  background: rgba(255,255,255,0.95);
+}
+html.dark-mode .search-form input,
+html.dark-mode .search-form select {
+  background: #fff;
+  color: #333;
+  border-color: #ddd;
+}
+
+/* Tab pills — inactive tab must stay readable */
+html.dark-mode .tab-pill {
+  background: rgba(255,255,255,0.92) !important;
+  color: #1f2937 !important;
+}
+html.dark-mode .tab-pill.active {
+  background: var(--mainColor) !important;
+  color: #fff !important;
+}
+html.dark-mode .tab-pill:hover:not(.active) {
+  background: #fff !important;
+  color: var(--mainColor) !important;
+}
+
+/* Scroll hint */
+html.dark-mode .scroll-hint {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Place cards */
+html.dark-mode .place-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+html.dark-mode .place-card-body h5 {
+  color: #f1f1f1;
+}
+html.dark-mode .place-card-body p {
+  color: #9ca3af;
+}
+
+/* Stats section — override background */
+html.dark-mode .stats-grid {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+/* About page perks */
+html.dark-mode .about-perks .about-perk {
+  color: #d1d5db;
+}
+html.dark-mode .about-perk h5 {
+  color: #f1f1f1;
+}
+html.dark-mode .about-perk p {
+  color: #9ca3af;
+}
+html.dark-mode .about-perk-icon {
+  background: rgba(255,56,92,0.12);
+}
+html.dark-mode .about-img-badge {
+  background: #1f2937;
+  color: #f1f1f1;
+  border-color: #374151;
+}
+
+/* Partner logos */
+html.dark-mode .partner-logo {
+  filter: brightness(0.8) contrast(1.1);
+}
+
+/* Blog detail page */
+html.dark-mode .blog-detail-grid aside .sidebar-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+html.dark-mode .sidebar-title {
+  color: #f1f1f1;
+}
+html.dark-mode .blog-tags .blog-tag {
+  background: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+/* Contact page */
+html.dark-mode .contact-detail-icon {
+  background: rgba(255,56,92,0.12);
+  color: var(--mainColor);
+}
+html.dark-mode .contact-detail h5 {
+  color: #f1f1f1;
+}
+html.dark-mode .contact-detail p {
+  color: #9ca3af;
+}
+
+/* Property detail page */
+html.dark-mode .prop-details-table .prop-details-row {
+  border-color: #374151;
+  color: #d1d5db;
+}
+html.dark-mode .prop-details-row span:first-child {
+  color: #9ca3af;
+}
+html.dark-mode .amenity-item {
+  color: #d1d5db;
+  background: #1f2937;
+  border-color: #374151;
+}
+html.dark-mode .prop-gallery {
+  background: #1f2937;
+  border-color: #374151;
+}
+html.dark-mode .gallery-thumb {
+  border-color: #374151;
+}
+html.dark-mode .star-rating i {
+  color: #6b7280;
+}
+html.dark-mode .star-rating i.fa-solid {
+  color: #f59e0b;
+}
+html.dark-mode .review-item {
+  border-color: #374151;
+}
+html.dark-mode .review-item-date {
+  color: #6b7280;
+}
+
+/* Listing page */
+html.dark-mode .listing-wrap aside .sidebar-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+html.dark-mode .sidebar-card .sidebar-title {
+  color: #f1f1f1;
+}
+html.dark-mode .prop-card-h-footer {
+  border-color: #374151;
+}
+html.dark-mode .agent-mini span {
+  color: #d1d5db;
+}
+
+/* Modals */
+html.dark-mode .modal-overlay {
+  background: rgba(0,0,0,0.7);
+}
+html.dark-mode .auth-tabs .auth-tab {
+  color: #9ca3af;
+  border-color: #374151;
+}
+html.dark-mode .auth-tabs .auth-tab.active {
+  color: var(--mainColor);
+  border-color: var(--mainColor);
+}
+html.dark-mode .form-check-label {
+  color: #d1d5db;
+}
+
+/* Dashboard — charts background */
+html.dark-mode .dash-card--chart-donut,
+html.dark-mode .dash-card--no-mb {
+  background: #1f2937;
+}
+html.dark-mode .chart-legend-item {
+  color: #9ca3af;
+}
+html.dark-mode .dash-card-title {
+  color: #f1f1f1;
+}
+html.dark-mode .dash-card-header {
+  border-color: #374151;
+}
+
+/* Dropdown menus */
+html.dark-mode .nav-dropdown-menu a {
+  color: #d1d5db;
+}
+
+/* Property price */
+html.dark-mode .prop-price {
+  color: var(--mainColor);
+}
+
+/* Buttons in dark mode */
+html.dark-mode .btn-outline {
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+html.dark-mode .btn-outline:hover {
+  border-color: var(--mainColor);
+  color: var(--mainColor);
+}
+html.dark-mode .btn-dark {
+  background: #374151;
+  color: #f1f1f1;
+}
+
+/* Footer links */
+html.dark-mode .footer-link a {
+  color: #9ca3af;
+}
+html.dark-mode .footer-link a:hover {
+  color: var(--mainColor);
+}
+html.dark-mode .footer-col h4 {
+  color: #f1f1f1;
+}
+html.dark-mode .footer-email-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f1f1f1;
+}
+
+/* Selection dropdown in listing sidebar */
+html.dark-mode .listing-wrap .form-select {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f1f1f1;
+}
+
+/* Feature cards on about/index */
+html.dark-mode .feature-card h4 {
+  color: #f1f1f1;
+}
+html.dark-mode .feature-card p {
+  color: #9ca3af;
+}
+
+/* Text on hero stays light */
+html.dark-mode .hero-content h1,
+html.dark-mode .hero-content p {
+  color: #fff;
+}
+
+/* Status badges */
+html.dark-mode .status-badge {
+  border-color: #4b5563;
+}
+
+/* Mobile drawer */
+html.dark-mode .mobile-drawer .nav-link {
+  color: #d1d5db;
+  border-color: #374151;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE — ROUND 3 FIXES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Place card — text must be readable on dark card bg */
+html.dark-mode .place-card {
+  background: #1e293b;
+}
+html.dark-mode .place-card-body {
+  background: #1e293b;
+}
+html.dark-mode .place-card-body h5 {
+  color: #f1f1f1 !important;
+}
+html.dark-mode .place-card-body p {
+  color: #9ca3af !important;
+}
+
+/* Listing page search bar — keep it white & readable */
+html.dark-mode .search-form.mb-4,
+html.dark-mode .listing-wrap > div > .search-form,
+html.dark-mode section.section-grey .search-form {
+  background: #fff !important;
+  border-color: #e5e7eb;
+}
+html.dark-mode .search-form input,
+html.dark-mode .search-form select {
+  background: #fff !important;
+  color: #333 !important;
+  border-color: #d1d5db !important;
+}
+html.dark-mode .search-form input::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Listing sidebar filter card */
+html.dark-mode .listing-wrap aside .sidebar-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .listing-wrap .sidebar-title {
+  color: #f1f1f1;
+}
+html.dark-mode .listing-wrap .form-label {
+  color: #d1d5db;
+}
+html.dark-mode .listing-wrap .form-select,
+html.dark-mode .listing-wrap .form-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f1f1f1;
+}
+
+/* Listing results header */
+html.dark-mode .listing-header {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .results-count {
+  color: #9ca3af;
+}
+html.dark-mode .results-count strong {
+  color: #f1f1f1;
+}
+html.dark-mode .sort-select {
+  background: #374151;
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+
+/* Horizontal property card on listing */
+html.dark-mode .prop-card-h {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .prop-card-h-body {
+  background: #1e293b;
+}
+html.dark-mode .prop-title a {
+  color: #f1f1f1 !important;
+}
+html.dark-mode .prop-title a:hover {
+  color: var(--mainColor) !important;
+}
+html.dark-mode .prop-card-h-footer {
+  border-color: #374151;
+}
+
+/* Hero — keep search/tabs white in dark mode */
+html.dark-mode .hero-search-wrap {
+  background: rgba(255,255,255,0.97) !important;
+  backdrop-filter: none;
+}
+
+/* Property card vertical */
+html.dark-mode .prop-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .prop-body {
+  background: #1e293b;
+}
+
+/* Featured properties section header */
+html.dark-mode .section-header h2 {
+  color: #f1f1f1;
+}
+html.dark-mode .section-header p {
+  color: #9ca3af;
+}
+
+/* Agent card */
+html.dark-mode .agent-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .agent-name {
+  color: #f1f1f1;
+}
+html.dark-mode .agent-role {
+  color: #9ca3af;
+}
+
+/* Review card (testimonials) */
+html.dark-mode .review-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .review-text {
+  color: #d1d5db;
+}
+html.dark-mode .reviewer-name {
+  color: #f1f1f1;
+}
+html.dark-mode .reviewer-city {
+  color: #9ca3af;
+}
+
+/* Blog card */
+html.dark-mode .blog-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .blog-card-body {
+  background: #1e293b;
+}
+html.dark-mode .blog-card-title a {
+  color: #f1f1f1 !important;
+}
+html.dark-mode .blog-card-title a:hover {
+  color: var(--mainColor) !important;
+}
+html.dark-mode .blog-card-link {
+  color: var(--mainColor);
+}
+
+/* Feature card */
+html.dark-mode .feature-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+
+/* Contact info card */
+html.dark-mode .contact-info {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .contact-info h3,
+html.dark-mode .contact-form-card h3 {
+  color: #f1f1f1;
+}
+html.dark-mode .contact-info p {
+  color: #9ca3af;
+}
+
+/* Blog detail body */
+html.dark-mode .blog-body {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .blog-body h2 {
+  color: #f1f1f1;
+}
+html.dark-mode .blog-body p,
+html.dark-mode .blog-body li {
+  color: #d1d5db;
+}
+
+/* Property detail cards */
+html.dark-mode .prop-detail-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .prop-detail-card h3 {
+  color: #f1f1f1;
+}
+
+/* Contact agent sidebar card */
+html.dark-mode .contact-agent-card {
+  background: #1e293b;
+  border-color: #374151;
+}
+html.dark-mode .contact-agent-card .agent-name {
+  color: #f1f1f1;
+}
+
+/* General text fixes */
+html.dark-mode p,
+html.dark-mode li {
+  color: #d1d5db;
+}
+html.dark-mode a {
+  color: inherit;
+}
+html.dark-mode strong {
+  color: #f1f1f1;
+}
