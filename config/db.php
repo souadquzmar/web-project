@@ -6,8 +6,8 @@
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');       // your MySQL username
-define('DB_PASS', '');           // your MySQL password (blank for default XAMPP)
-define('DB_NAME', '');
+define('DB_PASS', 'pass1234');           // your MySQL password (blank for default XAMPP)
+define('DB_NAME', 'find_houses');
 
 /**
  * Returns a mysqli connection.

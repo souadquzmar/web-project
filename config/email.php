@@ -21,7 +21,7 @@
 define('SMTP_HOST',       'smtp.gmail.com');       // Gmail SMTP server
 define('SMTP_PORT',       587);                     // TLS port
 define('SMTP_USER',       'souadquzmar13@gmail.com');  // ← Your Gmail address
-define('SMTP_PASS',       '');   // ← Your Gmail App Password (16 chars)
+define('SMTP_PASS',       'sleo qogy xyin sbhr');   // ← Your Gmail App Password (16 chars)
 
 // ── Sender Info ──────────────────────────────────────────────
 define('SMTP_FROM_EMAIL', 'souadquzmar13@gmail.com');  // ← Same as SMTP_USER

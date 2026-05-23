@@ -52,7 +52,7 @@ include __DIR__ . '/includes/header.php';
                       <form action="actions/change_status.php" method="POST" style="display:inline">
                         <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
                         <input type="hidden" name="property_id" value="<?= $p['id'] ?>">
-                        <select name="listing_status" class="form-select" style="width:auto;min-width:110px;padding:5px 10px;font-size:12px" onchange="this.form.submit()">
+                        <select name="listing_status" class="status-dropdown status-dropdown--<?= $p['listing_status'] ?>" onchange="this.form.submit()">
                           <option value="active" <?= $p['listing_status']==='active'?'selected':'' ?>>Active</option>
                           <option value="pending" <?= $p['listing_status']==='pending'?'selected':'' ?>>Pending</option>
                           <option value="inactive" <?= $p['listing_status']==='inactive'?'selected':'' ?>>Inactive</option>
